@@ -22,25 +22,185 @@
     </section>
     <section class="statement-section">
       <p class="public-title">系统数据量TOP10</p>
-      <div id="barChart" :style="{width: '100%', height: '300px'}"></div>
+      <ul class="bar-list">
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字一名字一</p>
+        </li>
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字二名字二</p>
+        </li>
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字三名字三</p>
+        </li>
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字四名字四</p>
+        </li>
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字五名字五</p>
+        </li>
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字六名字六</p>
+        </li>
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字七名字七</p>
+        </li>
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字八名字八</p>
+        </li>
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字九名字九</p>
+        </li>
+        <li class="bar-list-item">
+          <div class="loader-container">
+            <div class="loader-content">
+              <span class="text">444w</span>
+              <span class="runner"></span>
+            </div>
+          </div>
+          <p class="bar-title">名字十名字十</p>
+        </li>
+      </ul>
     </section>
     <section class="statement-section">
       <p class="public-title">七日数据增量</p>
       <div id="lineChart" :style="{width: '100%', height: '300px'}"></div>
     </section>
-    <section class="statement-section convert-ratio">
-        <ul class="ratio-ul">
-            <li class="ratio-list">
-                <p>本周</p>
-            </li>
-            <li class="ratio-list">
-                <p>上周</p>
-            </li>    
-        </ul>
+    <section class="statement-section">
+      <ul class="doughnut-list">
+        <li class="doughnut-list-item">
+            <p class="public-title">系统对接完成率</p>
+            <div class="item-circle">
+                <div class="circle">
+                    <div class="circle-left" :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'none'}">
+                        <div class="clip-left"></div>
+                    </div>
+                    <div class="circle-right" :style="{'transform': orderLastWeekNum > 50 ? 'rotate(0deg)' : 'rotate('+(orderLastWeekNum*3.6)+'deg)','background': orderLastWeekNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}">
+                        <div class="clip-right"></div>
+                    </div>
+                    <div class="mask" :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'rotate('+(orderLastWeekNum*3.6-90)+'deg)'}"></div>
+                </div>
+            </div>
+            <ul class="item-text">
+              <li>
+                <p>62</p>
+                <p>系统总数(个)</p>
+              </li>
+              <li>
+                <p>20</p>
+                <p>未对接(个)</p>
+              </li>
+            </ul>
+        </li>
+        <li class="doughnut-list-item">
+            <p class="public-title">单位对接完成率</p>
+            <div class="item-circle">
+                <div class="circle">
+                    <div class="circle-left" :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'none'}">
+                        <div class="clip-left"></div>
+                    </div>
+                    <div class="circle-right" :style="{'transform': orderLastWeekNum > 50 ? 'rotate(0deg)' : 'rotate('+(orderLastWeekNum*3.6)+'deg)','background': orderLastWeekNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}">
+                        <div class="clip-right"></div>
+                    </div>
+                    <div class="mask" :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'rotate('+(orderLastWeekNum*3.6-90)+'deg)'}"></div>
+                </div>
+            </div>
+            <ul class="item-text">
+              <li>
+                <p>62</p>
+                <p>单位总数(家)</p>
+              </li>
+              <li>
+                <p>20</p>
+                <p>未对接(家)</p>
+              </li>
+            </ul>
+        </li>
+      </ul>
     </section>
     <section class="statement-section">
       <p class="public-title">接口动态</p>
-      <!-- <div id="myChart" :style="{width: '300px', height: '300px'}"></div> -->
+      <dl class="dynamic-list">
+        <dt class="dynamic-list-item title">
+          <span>系统名称</span>
+          <span>最新同步时间</span>
+          <span>数据量(条)</span>
+        </dt>
+        <dd class="dynamic-list-item">
+          <span>交通局内网办公...</span>
+          <span>2018-11-14 01:50:03</span>
+          <span>20690</span>
+        </dd>
+        <dd class="dynamic-list-item">
+          <span>交通局内网办公...</span>
+          <span>2018-11-14 01:50:03</span>
+          <span>20690</span>
+        </dd>
+        <dd class="dynamic-list-item">
+          <span>交通局内网办公...</span>
+          <span>2018-11-14 01:50:03</span>
+          <span>20690</span>
+        </dd>
+        <dd class="dynamic-list-item">
+          <span>交通局内网办公...</span>
+          <span>2018-11-14 01:50:03</span>
+          <span>20690</span>
+        </dd>
+      </dl>
+      <button class="load-more">点击查看更多动态</button>
     </section>
   </section>
 </template>
@@ -50,26 +210,19 @@
 //   getConversion,
 // } from 'api/bossStatement/statement'
 
-let timestamp = new Date().getTime()
-const publicParams = {
-  sign_method: 'md5',
-  timestamp: timestamp
-}
-
 export default {
   data() {
     return {
-
+      orderLastWeekNum: 50,
     }
   },
   mounted() {
-    this.drawBarChart();
     this.drawLineChart();
   },
   methods: {
-    drawBarChart(){
+    drawLineChart(){
         // 基于准备好的dom，初始化echarts实例
-        let barChart = this.$echarts.init(document.getElementById('barChart'))
+        let barChart = this.$echarts.init(document.getElementById('lineChart'))
         // 绘制图表
         barChart.setOption({
             title: { text: '' },
@@ -84,348 +237,7 @@ export default {
                 data: [5, 20, 36, 10, 10, 20]
             }]
         });
-    },
-    drawLineChart(){
-        // 基于准备好的dom，初始化echarts实例
-        let lineChart = this.$echarts.init(document.getElementById('lineChart'))
-        // 绘制图表
-        let base = +new Date(2016, 9, 3);
-        let oneDay = 24 * 3600 * 1000;
-        let valueBase = Math.random() * 300;
-        let valueBase2 = Math.random() * 50;
-        let data = [];
-        let data2 = [];
-
-        for (let i = 1; i < 10; i++) {
-            let now = new Date(base += oneDay);
-            let dayStr = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-');
-
-            valueBase = Math.round((Math.random() - 0.5) * 20 + valueBase);
-            valueBase <= 0 && (valueBase = Math.random() * 300);
-            data.push([dayStr, valueBase]);
-
-            valueBase2 = Math.round((Math.random() - 0.5) * 20 + valueBase2);
-            valueBase2 <= 0 && (valueBase2 = Math.random() * 50);
-            data2.push([dayStr, valueBase2]);
-        } 
-        lineChart.setOption(
-          {
-            xAxis: {
-              type: 'time',
-            },
-            yAxis: {
-                type: 'value',
-                axisTick: {
-                    inside: true
-                },
-                splitLine: {
-                    show: false
-                },
-                axisLabel: {
-                    inside: true,
-                    formatter: '{value}\n'
-                },
-                z: 10
-            },
-            grid: {
-                top: 110,
-                left: 15,
-                right: 15,
-                height: 160
-            },
-            dataZoom: [{
-                type: 'inside',
-                throttle: 50
-            }],
-            series: [
-                {
-                    name:'模拟数据',
-                    type:'line',
-                    smooth: true,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    sampling: 'average',
-                    itemStyle: {
-                        normal: {
-                            color: '#1441C0'
-                        }
-                    },
-                    stack: 'a',
-                    areaStyle: {
-                        normal: {
-                            color: this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0,
-                                color: '#1441C0'
-                            }, {
-                                offset: 1,
-                                color: '#34D8C0'
-                            }])
-                        }
-                    },
-                    data: data
-                }
-              ]
-          });       
     }
-    /*
-    * 参数名排序
-    */
-    // keySort(obj) {
-    //   let arr = new Array()
-    //   let num = 0
-    //   for (let i in obj) {
-    //     arr[num] = i
-    //     num++
-    //   }
-    //   let sortArr = arr.sort()
-    //   let sortObj = {}
-    //   for (let i in sortArr) {
-    //     sortObj[sortArr[i]] = obj[sortArr[i]]
-    //   }
-    //   return sortObj
-    // },
-
-    /*
-    *拼装参数名和参数值
-    */
-    // togetherKeyAndVal(obj) {
-    //   let str = ''
-    //   for (let i in obj) {
-    //     str = str + i + obj[i]
-    //   }
-    //   return str
-    // },
-
-    /*
-    * 生成签名
-    */
-    // createSignature(str) {
-    //   let newStr = 'ziaRZcPNUB8i0PvWc1x0LXQJKpjSUcfW' + str + 'ziaRZcPNUB8i0PvWc1x0LXQJKpjSUcfW'
-    //   let signatureStr = hexMD5(newStr)
-    //   let signatureEnd = signatureStr.toLocaleUpperCase()
-    //   return signatureEnd
-    // },
-
-    /*
-    * 生成参数
-    */
-    // createParams(companyId) {
-    //   let dataParams = {}
-    //   Object.assign(dataParams, publicParams)
-    //   dataParams.company_id = companyId
-    //   let keySortDatas = this.keySort(dataParams)
-    //   let togetherStr = this.togetherKeyAndVal(keySortDatas)
-    //   let signatureStr = this.createSignature(togetherStr)
-    //   dataParams.signature = signatureStr
-    //   return dataParams
-    // },
-
-    /*
-    * 获取本周的日历
-    */
-    // getWeekDate(week) {
-    //   let now = new Date()
-    //   let year = now.getFullYear()
-    //   let month = now.getMonth() + 1
-    //   let date = now.getDate()
-    //   let day = now.getDay()
-
-    //   if (day !== 0) {
-    //     week = week + (day - 1)
-    //   } else {
-    //     week = week + day
-    //   }
-    //   if (day) {
-    //     if (month > 1) {
-    //       month = month
-    //     } else {
-    //       year = year - 1
-    //       month = 12
-    //     }
-    //   }
-    //   now.setDate(now.getDate() - week)
-    //   year = now.getFullYear()
-    //   month = now.getMonth() + 1
-    //   date = now.getDate()
-
-    //   let weekDay = year + '/' + (month < 10 ? '0' + month : month) + '/' + (date < 10 ? '0' + date : date)
-    //   return weekDay
-    // },
-
-    /*
-    * 比较大小
-    */
-    // isCompareBlo(num, maxnum, minnum) {
-    //   if (num <= maxnum && num >= minnum) {
-    //     return true
-    //   }
-    //   return false
-    // },
-
-    /*
-    * math
-    */
-    // mathToNum(num) {
-    //   let intNum = Math.round(num)
-    //   let positiveNum = Math.abs(intNum)
-    //   return positiveNum
-    // },
-
-    /*
-    * 价格数字添加千分位符号
-    */
-    // quantile(num) {
-    //   if (num > 999) {
-    //     let source = String(num).replace(/\,|\￥/g, "").split(".");
-    //     source[0] = source[0].replace(new RegExp('(\\d)(?=(\\d{3})+$)', 'ig'), "$1,");
-    //     return source.join(".");
-    //   } else {
-    //     return num;
-    //   }
-    // },
-
-    // getUserInfo(url) {
-    //   getUserInfo(url).then((res) => {
-    //     this.userInfo = res.data
-    //     let userCompanyId = res.data.company_id
-    //     this.getConversionSummary(userCompanyId)
-    //     this.getTotalMoney(userCompanyId)
-    //     this.getNewclient(userCompanyId)
-    //     this.getOrderConversionRate(userCompanyId)
-    //     this.getPayConversionRate(userCompanyId)
-    //     this.getStoreConversionRate(userCompanyId)
-    //     this.getOrders(userCompanyId)
-    //   })
-    // },
-
-    // getConversionSummary(companyId) {
-    //   let dataParams = this.createParams(companyId)
-    //   getConversion(dataParams).then((res) => {
-    //     this.conversionData = res.data
-    //   })
-    // },
-
-    // getTotalMoney(companyId) {
-    //   let dataParams = this.createParams(companyId)
-    //   getAmount(dataParams).then((res) => {
-    //     this.amountOrderData = res.data.order
-    //     this.amountPayData = res.data.pay
-    //   })
-    // },
-
-    // getNewclient(companyId) {
-    //   let dataParams = this.createParams(companyId)
-    //   getNewclient(dataParams).then((res) => {
-    //     this.clientInfo = res.data
-    //     this.clientCompareVal = this.mathToNum(res.data.compare)
-    //     res.data.compare > 0
-    //       ? (this.clientCompareImgUrl = require('images/baobiao_arrow1.png'))
-    //       : (this.clientCompareImgUrl = require('images/baobiao_arrow2.png'))
-    //   })
-    // },
-
-    // getOrderConversionRate(companyId) {
-    //   let dataParams = this.createParams(companyId)
-    //   getOrderConversion(dataParams).then((res) => {
-    //     this.orderThisWeek = this.mathToNum(res.data.orderconversion_this_week)
-    //     this.orderLastWeek = this.mathToNum(res.data.orderconversion_last_week)
-    //     this.orderCompareVal = this.mathToNum(res.data.orderconversion_compare)
-    //     this.orderCompareNum = res.data.orderconversion_compare
-    //     res.data.orderconversion_compare > 0
-    //       ? (this.orderCompareImgUrl = require('images/baobiao_arrow1.png'))
-    //       : (this.orderCompareImgUrl = require('images/baobiao_arrow2.png'))
-    //     res.data.orderconversion_this_week > 100
-    //       ? (this.orderThisWeekNum = 100)
-    //       : (this.orderThisWeekNum = res.data.orderconversion_this_week)
-    //     res.data.orderconversion_last_week > 100
-    //       ? (this.orderLastWeekNum = 100)
-    //       : (this.orderLastWeekNum = res.data.orderconversion_last_week)
-    //   })
-    // },
-
-    // getPayConversionRate(companyId) {
-    //   let dataParams = this.createParams(companyId)
-    //   getPayConversion(dataParams).then((res) => {
-    //     this.payThisWeek = this.mathToNum(res.data.payconversion_this_week)
-    //     this.payLastWeek = this.mathToNum(res.data.payconversion_last_week)
-    //     this.payCompareVal = this.mathToNum(res.data.payconversion_compare)
-    //     this.payCompareNum = res.data.payconversion_compare
-    //     res.data.payconversion_compare > 0
-    //       ? (this.payCompareImgUrl = require('images/baobiao_arrow1.png'))
-    //       : (this.payCompareImgUrl = require('images/baobiao_arrow2.png'))
-    //     res.data.payconversion_this_week > 100
-    //       ? (this.payThisWeekNum = 100)
-    //       : (this.payThisWeekNum = res.data.payconversion_this_week)
-    //     res.data.payconversion_last_week > 100
-    //       ? (this.payLastWeekNum = 100)
-    //       : (this.payLastWeekNum = res.data.payconversion_last_week)
-    //   })
-    // },
-
-    // getStoreConversionRate(companyId) {
-    //   let dataParams = this.createParams(companyId)
-    //   getStoreConversion(dataParams).then((res) => {
-    //     this.storeThisWeek = this.mathToNum(res.data.storeconversion_this_week)
-    //     this.storeLastWeek = this.mathToNum(res.data.storeconversion_last_week)
-    //     this.storeCompareVal = this.mathToNum(res.data.storeconversion_compare)
-    //     this.storeCompareNum = res.data.storeconversion_compare
-    //     res.data.storeconversion_compare > 0
-    //       ? (this.storeCompareImgUrl = require('images/baobiao_arrow1.png'))
-    //       : (this.storeCompareImgUrl = require('images/baobiao_arrow2.png'))
-    //     res.data.storeconversion_this_week > 100
-    //       ? (this.storeThisWeekNum = 100)
-    //       : (this.storeThisWeekNum = res.data.storeconversion_this_week)
-    //     res.data.storeconversion_last_week > 100
-    //       ? (this.storeLastWeekNum = 100)
-    //       : (this.storeLastWeekNum = res.data.storeconversion_last_week)
-    //   })
-    // },
-
-    // getOrders(companyId) {
-    //   let dataParams = this.createParams(companyId)
-    //   getTipsOrder(dataParams).then((res) => {
-    //     this.createTips(res.data)
-    //   })
-    // },
-
-    // createTips(orderNum) {
-    //   let thisWeekNum = orderNum.this_week_order
-    //   let lastWeekNum = orderNum.last_week_order
-    //   let compareNum = null
-    //   if (lastWeekNum === thisWeekNum) {
-    //     this.tipText = '本周下单数量与上周持平，加油扩展业务哦！胜利就在前方。'
-    //     return false
-    //   } else if (lastWeekNum === 0) {
-    //     this.tipText = '下单数量突飞猛进，加油冲！'
-    //     return false
-    //   } else {
-    //     compareNum = (thisWeekNum - lastWeekNum) / lastWeekNum * 100
-    //   }
-    //   if (this.isCompareBlo(compareNum, 25, 0)) {
-    //     this.tipText = '下单数量稍有增长，加油！可以结合营销推广策略获取更多新客户。'
-    //   }
-    //   if (this.isCompareBlo(compareNum, 50, 25)) {
-    //     this.tipText = '单数量增长明显，请保持增势'
-    //   }
-    //   if (this.isCompareBlo(compareNum, 75, 50)) {
-    //     this.tipText = '下单数量显著增长，思考一下做对了什么，保持领先的成绩'
-    //   }
-    //   if (this.isCompareBlo(compareNum, 10000, 75)) {
-    //     this.tipText = '下单数量突飞猛进，加油冲！'
-    //   }
-    //   if (this.isCompareBlo(compareNum, 0, -25)) {
-    //     this.tipText = '下单数量稍微下降，本周的业绩提成还需要加油哦！注意营销推广策略'
-    //   }
-    //   if (this.isCompareBlo(compareNum, -25, -50)) {
-    //     this.tipText = '下单数量有下降，请注意营销推广策略的使用，提高交易金额'
-    //   }
-    //   if (this.isCompareBlo(compareNum, -50, -75)) {
-    //     this.tipText = '下单数量大幅度下降，请注意复盘近期的销售过程'
-    //   }
-    //   if (this.isCompareBlo(compareNum, -75, -10000)) {
-    //     this.tipText = '下单数量显著下降，生意下滑，请注意最近生意情况，加快业绩提升'
-    //   }
-    // }
   }
 }
 </script>
@@ -438,11 +250,10 @@ export default {
     margin-bottom: 0.3rem;
     background: #fff;
     .public-title {
+      font-size: 0.28rem;
       font-weight: bold;
-      font-size: 0.26rem;
       color:rgba(51,51,51,1);
-      height: 0.25rem;
-      line-height: 0.3rem;
+      padding-bottom: 0.3rem;
     }
   }
   .conversion {
@@ -745,5 +556,188 @@ export default {
       }
     }
   }
+}
+
+.doughnut-list{
+  overflow: hidden;
+  .doughnut-list-item{
+    float: left;
+    width: 50%;
+    .public-title{
+      text-align: center;
+      font-size: 0.28rem;
+      font-weight:bold;
+      color:rgba(102,102,102,1);
+    }
+    .item-circle{
+      padding: 0.5rem 0 0.3rem;
+      .circle {
+        width: 2.3rem;
+        height: 2.3rem;
+        position: relative;
+        border-radius: 50%;
+        margin: 0 auto;
+        background: linear-gradient(to bottom, #1461C0, #34D8C0);
+      }
+      .circle-left,
+      .circle-right {
+        width: 2.3rem;
+        height: 2.3rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #f0f0f0;
+      }
+      .clip-left,
+      .clip-right {
+        width: 2.3rem;
+        height: 2.3rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .circle-left,
+      .clip-left {
+        position: absolute;
+        clip: rect(0, 1.15rem, auto, 0);
+      }
+      .circle-right,
+      .clip-right {
+        position: absolute;
+        clip: rect(0, auto, auto, 1.15rem);
+      }
+      .mask {
+        width: 1.8rem;
+        height: 1.8rem;
+        border-radius: 50%;
+        left: 0.25rem;
+        top: 0.25rem;
+        background: #fff;
+        position: absolute;
+      }
+    }
+    .item-text{
+      overflow: hidden;
+      width: 90%;
+      margin: 0 auto;
+      li{
+        float: left;
+        width: 50%;
+        font-size:0.2rem;
+        font-weight:400;
+        color:rgba(102,102,102,1);
+        text-align: center;
+        p{
+          &:first-child{
+            padding-bottom: 0.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.bar-list{
+  overflow: hidden;
+  .bar-list-item{
+    float: left;
+    width: 0.2rem;
+    margin: 0 0.235rem;
+    &:last-child{
+      margin-right: 0;
+    }
+    .loader-container {
+      position: relative;
+      height: 3.3rem;
+      border-radius:10px;
+      background:rgba(159,159,159,0.16);
+      .loader-content{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        span{
+          display: inline-block;
+          &.text{
+            margin-left: -0.17rem;
+            width: 0.54rem;
+            font-size: 0.2rem;
+            color:rgba(51,51,51,1);
+            text-align: center;
+            padding-bottom: 0.1rem;
+          }
+          &.runner{
+            width: 0.2rem;
+            height: 2rem;
+            border-radius:10px;
+            background:linear-gradient(0deg,rgba(20,97,192,1) 0%,rgba(52,216,192,1) 100%);
+          }
+        }
+      }
+    }
+    .bar-title{
+      font-size: 0.2rem;
+      color:rgba(102,102,102,1);
+    }
+    &:first-child{
+      .loader-container{
+        .loader-content{
+          span{
+            &.runner{
+              background:linear-gradient(180deg,rgba(242,225,31,1) 0%,rgba(205,51,34,1) 100%);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dynamic-list{
+  padding-bottom: 0.4rem;
+  .dynamic-list-item{
+    display: flex;
+    &.title{
+      padding: 0.2rem 0;
+      border-bottom: 2px solid rgba(170,170,170,1);
+      font-size: 0.28rem;
+      font-weight:bold;
+      color:rgba(102,102,102,1);
+      margin-bottom: 0.1rem;
+    } 
+    span{
+      text-align: center;
+      &:first-child{
+        width: 30%;
+      }
+      &:nth-child(2){
+        width: 45%;
+      }
+      &:last-child{
+        width: 25%;
+      }
+    }
+  }
+  dd{
+    padding: 0.09rem 0.05rem;
+    span{
+      font-size: 0.2rem;
+      font-weight:400;
+      color:rgba(102,102,102,1);
+    }
+  }
+}
+
+.load-more{
+  width: 100%;
+  height: 0.9rem;
+  background:rgba(52,216,192,1);
+  border-radius: 0.45rem;
+  text-align: center;
+  line-height: 0.9rem;
+  color: #fff;
+  font-size: 0.28rem;
+  font-weight: bold;
+  border: none;
 }
 </style>
