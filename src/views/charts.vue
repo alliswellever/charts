@@ -1,24 +1,27 @@
 <template>
   <section class="statement">
     <section class="statement-section conversion">
-        <div class="conversion-title">
-          <h1><span class="num">102</span><span class="text">.37万</span></h1>
-          <p>昨日同步数据量（条）</p>
-        </div>
-          <ul class="conversion-content">
-            <li class="item">
-              <h5>已对接单位(家)</h5>
-              <p>15</p>
-            </li>
-            <li class="item">
-              <h5>已对接系统(个)</h5>
-              <p>158</p>
-            </li>
-            <li class="item">
-              <h5>数据条数(条)</h5>
-              <p>153</p>
-            </li>
-          </ul>
+      <div class="conversion-title">
+        <h1>
+          <span class="num">102</span>
+          <span class="text">.37万</span>
+        </h1>
+        <p>昨日同步数据量（条）</p>
+      </div>
+      <ul class="conversion-content">
+        <li class="item">
+          <h5>已对接单位(家)</h5>
+          <p>15</p>
+        </li>
+        <li class="item">
+          <h5>已对接系统(个)</h5>
+          <p>158</p>
+        </li>
+        <li class="item">
+          <h5>数据条数(条)</h5>
+          <p>153</p>
+        </li>
+      </ul>
     </section>
     <section class="statement-section">
       <p class="public-title">系统数据量TOP10</p>
@@ -122,52 +125,70 @@
     <section class="statement-section">
       <ul class="doughnut-list">
         <li class="doughnut-list-item">
-            <p class="public-title">系统对接完成率</p>
-            <div class="item-circle">
-                <div class="circle">
-                    <div class="circle-left" :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'none'}">
-                        <div class="clip-left"></div>
-                    </div>
-                    <div class="circle-right" :style="{'transform': orderLastWeekNum > 50 ? 'rotate(0deg)' : 'rotate('+(orderLastWeekNum*3.6)+'deg)','background': orderLastWeekNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}">
-                        <div class="clip-right"></div>
-                    </div>
-                    <div class="mask" :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'rotate('+(orderLastWeekNum*3.6-90)+'deg)'}"></div>
-                </div>
+          <p class="public-title">系统对接完成率</p>
+          <div class="item-circle">
+            <div class="circle">
+              <div
+                class="circle-left"
+                :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'none'}"
+              >
+                <div class="clip-left"></div>
+              </div>
+              <div
+                class="circle-right"
+                :style="{'transform': orderLastWeekNum > 50 ? 'rotate(0deg)' : 'rotate('+(orderLastWeekNum*3.6)+'deg)','background': orderLastWeekNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}"
+              >
+                <div class="clip-right"></div>
+              </div>
+              <div
+                class="mask"
+                :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'rotate('+(orderLastWeekNum*3.6-90)+'deg)'}"
+              ></div>
             </div>
-            <ul class="item-text">
-              <li>
-                <p>62</p>
-                <p>系统总数(个)</p>
-              </li>
-              <li>
-                <p>20</p>
-                <p>未对接(个)</p>
-              </li>
-            </ul>
+          </div>
+          <ul class="item-text">
+            <li>
+              <p>62</p>
+              <p>系统总数(个)</p>
+            </li>
+            <li>
+              <p>20</p>
+              <p>未对接(个)</p>
+            </li>
+          </ul>
         </li>
         <li class="doughnut-list-item">
-            <p class="public-title">单位对接完成率</p>
-            <div class="item-circle">
-                <div class="circle">
-                    <div class="circle-left" :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'none'}">
-                        <div class="clip-left"></div>
-                    </div>
-                    <div class="circle-right" :style="{'transform': orderLastWeekNum > 50 ? 'rotate(0deg)' : 'rotate('+(orderLastWeekNum*3.6)+'deg)','background': orderLastWeekNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}">
-                        <div class="clip-right"></div>
-                    </div>
-                    <div class="mask" :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'rotate('+(orderLastWeekNum*3.6-90)+'deg)'}"></div>
-                </div>
+          <p class="public-title">单位对接完成率</p>
+          <div class="item-circle">
+            <div class="circle">
+              <div
+                class="circle-left"
+                :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'none'}"
+              >
+                <div class="clip-left"></div>
+              </div>
+              <div
+                class="circle-right"
+                :style="{'transform': orderLastWeekNum > 50 ? 'rotate(0deg)' : 'rotate('+(orderLastWeekNum*3.6)+'deg)','background': orderLastWeekNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}"
+              >
+                <div class="clip-right"></div>
+              </div>
+              <div
+                class="mask"
+                :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'rotate('+(orderLastWeekNum*3.6-90)+'deg)'}"
+              ></div>
             </div>
-            <ul class="item-text">
-              <li>
-                <p>62</p>
-                <p>单位总数(家)</p>
-              </li>
-              <li>
-                <p>20</p>
-                <p>未对接(家)</p>
-              </li>
-            </ul>
+          </div>
+          <ul class="item-text">
+            <li>
+              <p>62</p>
+              <p>单位总数(家)</p>
+            </li>
+            <li>
+              <p>20</p>
+              <p>未对接(家)</p>
+            </li>
+          </ul>
         </li>
       </ul>
     </section>
@@ -210,41 +231,47 @@
 //   getConversion,
 // } from 'api/bossStatement/statement'
 
+// const { init } = require("../api/index");
+// init().then(result => {
+//   console.log(result);
+// });
 export default {
   data() {
     return {
-      orderLastWeekNum: 50,
-    }
+      orderLastWeekNum: 50
+    };
   },
   mounted() {
     this.drawLineChart();
   },
   methods: {
-    drawLineChart(){
-        // 基于准备好的dom，初始化echarts实例
-        let barChart = this.$echarts.init(document.getElementById('lineChart'))
-        // 绘制图表
-        barChart.setOption({
-            title: { text: '' },
-            tooltip: {},
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        });
+    drawLineChart() {
+      // 基于准备好的dom，初始化echarts实例
+      let barChart = this.$echarts.init(document.getElementById("lineChart"));
+      // 绘制图表
+      barChart.setOption({
+        title: { text: "" },
+        tooltip: {},
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "销量",
+            type: "bar",
+            data: [5, 20, 36, 10, 10, 20]
+          }
+        ]
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .statement {
-  background:rgba(244,244,244,1);
+  background: rgba(244, 244, 244, 1);
   .statement-section {
     padding: 0.4rem;
     margin-bottom: 0.3rem;
@@ -252,40 +279,44 @@ export default {
     .public-title {
       font-size: 0.28rem;
       font-weight: bold;
-      color:rgba(51,51,51,1);
+      color: rgba(51, 51, 51, 1);
       padding-bottom: 0.3rem;
     }
   }
   .conversion {
     height: 4.3rem;
-    background:linear-gradient(106deg,rgba(20,97,192,1) 0%,rgba(52,216,192,1) 100%);
+    background: linear-gradient(
+      106deg,
+      rgba(20, 97, 192, 1) 0%,
+      rgba(52, 216, 192, 1) 100%
+    );
     position: relative;
     .conversion-title {
       padding: 0.5rem 0 0.6rem;
-      h1{
-        color:rgba(255,255,255,1);
-        line-height:0.56rem;
-        .num{
-          font-size:1.4rem;
-          font-weight:400;
+      h1 {
+        color: rgba(255, 255, 255, 1);
+        line-height: 0.56rem;
+        .num {
+          font-size: 1.4rem;
+          font-weight: 400;
         }
-        .text{
+        .text {
           font-size: 0.5rem;
-          font-weight:400;
+          font-weight: 400;
         }
       }
-      p{
-        font-size:0.3rem;
-        font-weight:400;
-        color:rgba(255,255,255,1);
+      p {
+        font-size: 0.3rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 1);
       }
     }
     .conversion-content {
       display: flex;
       width: 6.7rem;
       height: 1.3rem;
-      border-radius:10px 10px 0px 0px;
-      background:rgba(51,51,51,0.2);
+      border-radius: 10px 10px 0px 0px;
+      background: rgba(51, 51, 51, 0.2);
       position: absolute;
       bottom: 0;
       .item {
@@ -295,14 +326,14 @@ export default {
           height: 0.2rem;
           font-size: 0.2rem;
           font-weight: normal;
-          color: rgba(255,255,255,1);
+          color: rgba(255, 255, 255, 1);
           padding-top: 0.2rem;
         }
-        p{
-          height:0.37rem;
+        p {
+          height: 0.37rem;
           font-size: 0.5rem;
           font-weight: 400;
-          color:rgba(255,255,255,1);
+          color: rgba(255, 255, 255, 1);
           padding-top: 0.35rem;
         }
       }
@@ -421,7 +452,7 @@ export default {
           right: 0;
           top: 0.24rem;
         }
-        .ratio-list-item{
+        .ratio-list-item {
           font-size: 0.28rem;
         }
         .ratio-list-item:nth-child(2) {
@@ -519,7 +550,7 @@ export default {
           position: relative;
           &:before,
           &:after {
-            content: '';
+            content: "";
             position: absolute;
             top: 40%;
             background: #cdbca9;
@@ -538,7 +569,7 @@ export default {
           padding-top: 0.4rem;
           word-break: normal;
           word-wrap: break-word;
-          font-family: '微软雅黑';
+          font-family: "微软雅黑";
         }
         .text-box-logo {
           padding: 0 0.2rem;
@@ -558,18 +589,18 @@ export default {
   }
 }
 
-.doughnut-list{
+.doughnut-list {
   overflow: hidden;
-  .doughnut-list-item{
+  .doughnut-list-item {
     float: left;
     width: 50%;
-    .public-title{
+    .public-title {
       text-align: center;
       font-size: 0.28rem;
-      font-weight:bold;
-      color:rgba(102,102,102,1);
+      font-weight: bold;
+      color: rgba(102, 102, 102, 1);
     }
-    .item-circle{
+    .item-circle {
       padding: 0.5rem 0 0.3rem;
       .circle {
         width: 2.3rem;
@@ -577,7 +608,7 @@ export default {
         position: relative;
         border-radius: 50%;
         margin: 0 auto;
-        background: linear-gradient(to bottom, #1461C0, #34D8C0);
+        background: linear-gradient(to bottom, #1461c0, #34d8c0);
       }
       .circle-left,
       .circle-right {
@@ -617,19 +648,19 @@ export default {
         position: absolute;
       }
     }
-    .item-text{
+    .item-text {
       overflow: hidden;
       width: 90%;
       margin: 0 auto;
-      li{
+      li {
         float: left;
         width: 50%;
-        font-size:0.2rem;
-        font-weight:400;
-        color:rgba(102,102,102,1);
+        font-size: 0.2rem;
+        font-weight: 400;
+        color: rgba(102, 102, 102, 1);
         text-align: center;
-        p{
-          &:first-child{
+        p {
+          &:first-child {
             padding-bottom: 0.2rem;
           }
         }
@@ -638,53 +669,61 @@ export default {
   }
 }
 
-.bar-list{
+.bar-list {
   overflow: hidden;
-  .bar-list-item{
+  .bar-list-item {
     float: left;
     width: 0.2rem;
     margin: 0 0.235rem;
-    &:last-child{
+    &:last-child {
       margin-right: 0;
     }
     .loader-container {
       position: relative;
       height: 3.3rem;
-      border-radius:10px;
-      background:rgba(159,159,159,0.16);
-      .loader-content{
+      border-radius: 10px;
+      background: rgba(159, 159, 159, 0.16);
+      .loader-content {
         position: absolute;
         left: 0;
         bottom: 0;
-        span{
+        span {
           display: inline-block;
-          &.text{
+          &.text {
             margin-left: -0.17rem;
             width: 0.54rem;
             font-size: 0.2rem;
-            color:rgba(51,51,51,1);
+            color: rgba(51, 51, 51, 1);
             text-align: center;
             padding-bottom: 0.1rem;
           }
-          &.runner{
+          &.runner {
             width: 0.2rem;
             height: 2rem;
-            border-radius:10px;
-            background:linear-gradient(0deg,rgba(20,97,192,1) 0%,rgba(52,216,192,1) 100%);
+            border-radius: 10px;
+            background: linear-gradient(
+              0deg,
+              rgba(20, 97, 192, 1) 0%,
+              rgba(52, 216, 192, 1) 100%
+            );
           }
         }
       }
     }
-    .bar-title{
+    .bar-title {
       font-size: 0.2rem;
-      color:rgba(102,102,102,1);
+      color: rgba(102, 102, 102, 1);
     }
-    &:first-child{
-      .loader-container{
-        .loader-content{
-          span{
-            &.runner{
-              background:linear-gradient(180deg,rgba(242,225,31,1) 0%,rgba(205,51,34,1) 100%);
+    &:first-child {
+      .loader-container {
+        .loader-content {
+          span {
+            &.runner {
+              background: linear-gradient(
+                180deg,
+                rgba(242, 225, 31, 1) 0%,
+                rgba(205, 51, 34, 1) 100%
+              );
             }
           }
         }
@@ -693,45 +732,45 @@ export default {
   }
 }
 
-.dynamic-list{
+.dynamic-list {
   padding-bottom: 0.4rem;
-  .dynamic-list-item{
+  .dynamic-list-item {
     display: flex;
-    &.title{
+    &.title {
       padding: 0.2rem 0;
-      border-bottom: 2px solid rgba(170,170,170,1);
+      border-bottom: 2px solid rgba(170, 170, 170, 1);
       font-size: 0.28rem;
-      font-weight:bold;
-      color:rgba(102,102,102,1);
+      font-weight: bold;
+      color: rgba(102, 102, 102, 1);
       margin-bottom: 0.1rem;
-    } 
-    span{
+    }
+    span {
       text-align: center;
-      &:first-child{
+      &:first-child {
         width: 30%;
       }
-      &:nth-child(2){
+      &:nth-child(2) {
         width: 45%;
       }
-      &:last-child{
+      &:last-child {
         width: 25%;
       }
     }
   }
-  dd{
+  dd {
     padding: 0.09rem 0.05rem;
-    span{
+    span {
       font-size: 0.2rem;
-      font-weight:400;
-      color:rgba(102,102,102,1);
+      font-weight: 400;
+      color: rgba(102, 102, 102, 1);
     }
   }
 }
 
-.load-more{
+.load-more {
   width: 100%;
   height: 0.9rem;
-  background:rgba(52,216,192,1);
+  background: rgba(52, 216, 192, 1);
   border-radius: 0.45rem;
   text-align: center;
   line-height: 0.9rem;
