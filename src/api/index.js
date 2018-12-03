@@ -87,23 +87,17 @@ const query5 = async () => {
     return result;
 }
 
-export const init = async () => {
-    let ps = [
-        query(),
-        query1(),
-        query2(),
-        query3(),
-        query4(),
-        query5()
-    ];
-
-    ps = await Promise(ps);
-    return {
-        query: ps[0],
-        query1: ps[1],
-        query2: ps[2],
-        query3: ps[3],
-        query4: ps[4],
-        query5: ps[5]
+let init = async () => {
+    let res = {
+        query: await query(),
+        query1: await query1(),
+        query2: await query2(),
+        query3: await query3(),
+        query4: await query4(),
+        query5: await query5()
     }
+    console.log(3333, res);
+    return res;
 }
+
+export default init;

@@ -231,10 +231,15 @@
 //   getConversion,
 // } from 'api/bossStatement/statement'
 
-// const { init } = require("../api/index");
-// init().then(result => {
-//   console.log(result);
-// });
+import init from "api";
+// console.log(1111111111, init);
+init()
+  .then(result => {
+    console.log(result);
+  })
+  .catch(e => {
+    console.log(1111222, e);
+  });
 export default {
   data() {
     return {
