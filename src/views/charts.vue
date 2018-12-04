@@ -3,124 +3,46 @@
     <section class="statement-section conversion">
       <div class="conversion-title">
         <h1>
-          <span class="num">102</span>
-          <span class="text">.37万</span>
+          <span class="num">{{headerDataNum[0]}}</span>
+          <span class="text">.{{headerDataNum[1]}}</span>
         </h1>
         <p>昨日同步数据量（条）</p>
       </div>
       <ul class="conversion-content">
         <li class="item">
           <h5>已对接单位(家)</h5>
-          <p>15</p>
+          <p>{{headerData.unit}}</p>
         </li>
         <li class="item">
           <h5>已对接系统(个)</h5>
-          <p>158</p>
+          <p>{{headerData.system}}</p>
         </li>
         <li class="item">
           <h5>数据条数(条)</h5>
-          <p>153</p>
+          <p>{{headerData.data}}</p>
         </li>
       </ul>
     </section>
     <section class="statement-section">
       <p class="public-title">系统数据量TOP10</p>
       <ul class="bar-list">
-        <li class="bar-list-item">
+        <li class="bar-list-item" v-for="(item, index) in top10Data" :key="index">
           <div class="loader-container">
             <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
+              <span class="text">{{item.sum}}w</span>
+              <span class="runner" :style="{'height': item.height}"></span>
             </div>
           </div>
-          <p class="bar-title">名字一名字一</p>
-        </li>
-        <li class="bar-list-item">
-          <div class="loader-container">
-            <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
-            </div>
-          </div>
-          <p class="bar-title">名字二名字二</p>
-        </li>
-        <li class="bar-list-item">
-          <div class="loader-container">
-            <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
-            </div>
-          </div>
-          <p class="bar-title">名字三名字三</p>
-        </li>
-        <li class="bar-list-item">
-          <div class="loader-container">
-            <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
-            </div>
-          </div>
-          <p class="bar-title">名字四名字四</p>
-        </li>
-        <li class="bar-list-item">
-          <div class="loader-container">
-            <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
-            </div>
-          </div>
-          <p class="bar-title">名字五名字五</p>
-        </li>
-        <li class="bar-list-item">
-          <div class="loader-container">
-            <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
-            </div>
-          </div>
-          <p class="bar-title">名字六名字六</p>
-        </li>
-        <li class="bar-list-item">
-          <div class="loader-container">
-            <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
-            </div>
-          </div>
-          <p class="bar-title">名字七名字七</p>
-        </li>
-        <li class="bar-list-item">
-          <div class="loader-container">
-            <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
-            </div>
-          </div>
-          <p class="bar-title">名字八名字八</p>
-        </li>
-        <li class="bar-list-item">
-          <div class="loader-container">
-            <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
-            </div>
-          </div>
-          <p class="bar-title">名字九名字九</p>
-        </li>
-        <li class="bar-list-item">
-          <div class="loader-container">
-            <div class="loader-content">
-              <span class="text">444w</span>
-              <span class="runner"></span>
-            </div>
-          </div>
-          <p class="bar-title">名字十名字十</p>
+          <p class="bar-title">{{item.sys_name}}</p>
         </li>
       </ul>
     </section>
     <section class="statement-section">
       <p class="public-title">七日数据增量</p>
       <div id="lineChart" :style="{width: '100%', height: '300px'}"></div>
+      <!-- <div :style="{width: '100%', height: '300px'}">
+        <IEcharts :option="bar" class="step_echarts"></IEcharts>
+      </div> -->
     </section>
     <section class="statement-section">
       <ul class="doughnut-list">
@@ -130,29 +52,30 @@
             <div class="circle">
               <div
                 class="circle-left"
-                :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'none'}"
+                :style="{'transform': systemPercentNum > 50 ? 'rotate('+((systemPercentNum-50)*3.6)+'deg)' : 'none'}"
               >
                 <div class="clip-left"></div>
               </div>
               <div
                 class="circle-right"
-                :style="{'transform': orderLastWeekNum > 50 ? 'rotate(0deg)' : 'rotate('+(orderLastWeekNum*3.6)+'deg)','background': orderLastWeekNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}"
+                :style="{'transform': systemPercentNum > 50 ? 'rotate(0deg)' : 'rotate('+(systemPercentNum*3.6)+'deg)','background': systemPercentNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}"
               >
                 <div class="clip-right"></div>
               </div>
               <div
                 class="mask"
-                :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'rotate('+(orderLastWeekNum*3.6-90)+'deg)'}"
+                :style="{'transform': systemPercentNum > 50 ? 'rotate('+((systemPercentNum-50)*3.6)+'deg)' : 'rotate('+(systemPercentNum*3.6-90)+'deg)'}"
               ></div>
+              <div class="rate">{{systemPercentData.rate}}</div>
             </div>
           </div>
           <ul class="item-text">
             <li>
-              <p>62</p>
+              <p>{{systemPercentData.sum}}</p>
               <p>系统总数(个)</p>
             </li>
             <li>
-              <p>20</p>
+              <p>{{systemPercentData.undone_sum}}</p>
               <p>未对接(个)</p>
             </li>
           </ul>
@@ -163,29 +86,30 @@
             <div class="circle">
               <div
                 class="circle-left"
-                :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'none'}"
+                :style="{'transform': companyPercentNum > 50 ? 'rotate('+((companyPercentNum-50)*3.6)+'deg)' : 'none'}"
               >
                 <div class="clip-left"></div>
               </div>
               <div
                 class="circle-right"
-                :style="{'transform': orderLastWeekNum > 50 ? 'rotate(0deg)' : 'rotate('+(orderLastWeekNum*3.6)+'deg)','background': orderLastWeekNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}"
+                :style="{'transform': companyPercentNum > 50 ? 'rotate(0deg)' : 'rotate('+(companyPercentNum*3.6)+'deg)','background': companyPercentNum > 50 ? 'linear-gradient(to bottom, #1461C0, #34D8C0)' : '#f0f0f0'}"
               >
                 <div class="clip-right"></div>
               </div>
               <div
                 class="mask"
-                :style="{'transform': orderLastWeekNum > 50 ? 'rotate('+((orderLastWeekNum-50)*3.6)+'deg)' : 'rotate('+(orderLastWeekNum*3.6-90)+'deg)'}"
+                :style="{'transform': companyPercentNum > 50 ? 'rotate('+((companyPercentNum-50)*3.6)+'deg)' : 'rotate('+(companyPercentNum*3.6-90)+'deg)'}"
               ></div>
+              <div class="rate">{{companyPercentData.rate}}</div>
             </div>
           </div>
           <ul class="item-text">
             <li>
-              <p>62</p>
+              <p>{{companyPercentData.sum}}</p>
               <p>单位总数(家)</p>
             </li>
             <li>
-              <p>20</p>
+              <p>{{companyPercentData.undone_sum}}</p>
               <p>未对接(家)</p>
             </li>
           </ul>
@@ -200,62 +124,127 @@
           <span>最新同步时间</span>
           <span>数据量(条)</span>
         </dt>
-        <dd class="dynamic-list-item">
-          <span>交通局内网办公...</span>
-          <span>2018-11-14 01:50:03</span>
-          <span>20690</span>
-        </dd>
-        <dd class="dynamic-list-item">
-          <span>交通局内网办公...</span>
-          <span>2018-11-14 01:50:03</span>
-          <span>20690</span>
-        </dd>
-        <dd class="dynamic-list-item">
-          <span>交通局内网办公...</span>
-          <span>2018-11-14 01:50:03</span>
-          <span>20690</span>
-        </dd>
-        <dd class="dynamic-list-item">
-          <span>交通局内网办公...</span>
-          <span>2018-11-14 01:50:03</span>
-          <span>20690</span>
+        <dd class="dynamic-list-item" v-for="(item, index) in apiData" :key="index">
+          <span>{{item.sys_name}}</span>
+          <span>{{item.start_time}}</span>
+          <span>{{item.refuses}}</span>
         </dd>
       </dl>
-      <button class="load-more">点击查看更多动态</button>
+      <button class="load-more" @click="sheetSwitch">点击查看更多动态</button>
+    </section>
+    <section class="more-data-section" v-show="sheetVisible">
+      <div class="opcity"></div>
+      <section class="statement-section">
+        <p class="public-title">接口动态</p>
+        <div class="dynamic-list">
+          <div class="dynamic-list-item title">
+            <span>系统名称</span>
+            <span>最新同步时间</span>
+            <span>数据量(条)</span>
+          </div>
+          <ul class="dynamic-list-ul">
+            <li class="dynamic-list-item" v-for="(item, index) in moreApiData" :key="index">
+              <span>{{item.sys_name}}</span>
+              <span>{{item.start_time}}</span>
+              <span>{{item.refuses}}</span>
+            </li>
+          </ul>
+        </div>
+      </section>
     </section>
   </section>
 </template>
 
 <script>
-// import {
-//   getConversion,
-// } from 'api/bossStatement/statement'
-
 import init from "api";
-// console.log(1111111111, init);
-init()
-  .then(result => {
-    console.log(result);
-  })
-  .catch(e => {
-    console.log(1111222, e);
-  });
-// import IEcharts from 'vue-echarts-v3'
-// import 'echarts/lib/chart/line'
+import echarts from 'echarts'
+import IEcharts from 'vue-echarts-v3'
+import 'echarts/lib/chart/line'
 
 export default {
   data() {
     return {
-      orderLastWeekNum: 50
+      headerData: {},
+      headerDataNum: [],
+      top10Data: [],
+      incrementData: [],
+      systemPercentData: {},
+      systemPercentNum: '',
+      companyPercentData: {},
+      companyPercentNum: '',
+      apiData: [],
+      moreApiData: [],
+      sheetVisible: false,
+      bar: {}
     };
+  },
+  components: {
+    IEcharts
   },
   mounted() {
     this.drawLineChart();
+    this.getDatas();
   },
   methods: {
+    sheetSwitch() {
+      this.sheetVisible = true
+    },
+
+    getDatas() {
+      init()
+      .then(result => {
+        this.headerData = result.query
+        this.headerDataNum = this.headerData.number.split('.')
+        result.query1.map((item, index) => {
+          item.sum = (parseInt(item.sum) / 10000).toFixed(0);
+          item.height = (item.sum / 500 ) * 3.3 + 'rem';
+        })
+        this.top10Data = result.query1
+        this.incrementData = result.query2
+        this.systemPercentData = result.query3
+        this.systemPercentNum = this.systemPercentData.rate.split('.')[0]
+        this.companyPercentData = result.query4
+        this.companyPercentNum = this.companyPercentData.rate.split('.')[0]
+        this.apiData = result.query5.splice(0,10)
+        this.moreApiData = result.query5
+      })
+      .catch(e => {
+        console.log('errorMsg', e);
+      });
+    },
+
     drawLineChart() {
+      this.bar = {
+        tooltip: {},
+          xAxis: {
+              data: ['1泡', '2泡', '3泡', '4泡', '5泡'],
+              axisTick:{
+                  alignWithLabel:true
+              }
+          },
+          yAxis: {
+              show:false
+          },
+          series: [{
+                name: 'Clouds',
+                type: 'line',
+                data: [5, 7, 13, 20, 30],
+                itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1,
+                        [
+                            {offset: 0, color: 'red'},
+                            {offset: 0.5, color: 'pink'},
+                            {offset: 1, color: '#ddd'}
+                        ]
+                    )
+                }
+            }
+          }]
+      }
       // 基于准备好的dom，初始化echarts实例
-      let lineChart = this.$echarts.init(document.getElementById("lineChart"));
+      let lineChart = echarts.init(document.getElementById("lineChart"));
       // 绘制图表
       lineChart.setOption({
         xAxis: {
@@ -272,7 +261,7 @@ export default {
             type: "line",
             areaStyle: {
               normal: {
-                color: this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                   {
                     offset: 0,
                     color: "rgba(80,141,255,0.39)"
@@ -299,6 +288,7 @@ export default {
 <style lang="scss" scoped>
 .statement {
   background: rgba(244, 244, 244, 1);
+  position: relative;
   .statement-section {
     padding: 0.4rem;
     margin-bottom: 0.3rem;
@@ -366,254 +356,6 @@ export default {
       }
     }
   }
-
-  .amount {
-    padding: 0.4rem 0.3rem 0.4rem 0;
-    display: flex;
-    align-items: center;
-    .amount-content-left {
-      padding-right: 0.15rem;
-      flex: 1;
-    }
-    .amount-content-right {
-      padding-left: 0.15rem;
-      flex: 1;
-    }
-    .amount-card {
-      width: 100%;
-      height: 1.8rem;
-      background: -webkit-linear-gradient(left, #6740f0, #bc4aba);
-      margin: 0.32rem 0;
-      box-shadow: 0rem 0.15rem 0.15rem rgba(109, 65, 236, 0.3);
-      box-sizing: border-box;
-      padding: 0.24rem 0.2rem;
-      .amount-card-title {
-        color: #fff;
-        padding-bottom: 0.25rem;
-        display: flex;
-        align-items: center;
-        .left-title {
-          font-size: 0.28rem;
-          flex: 1;
-        }
-        .right-icon {
-          text-align: right;
-          flex: 1;
-          img {
-            width: 0.42rem;
-            height: 0.42rem;
-          }
-        }
-      }
-      .amount-card-text {
-        color: #fff;
-        text-align: right;
-        .sign {
-          font-size: 0.24rem;
-          padding-right: 0.1rem;
-        }
-        .number {
-          font-size: 0.4rem;
-        }
-      }
-    }
-    .amount-card.trade {
-      background: -webkit-linear-gradient(left, #fc4bba, #f17577);
-      box-shadow: 0rem 0.15rem 0.15rem rgba(247, 94, 156, 0.3);
-    }
-    .amount-text {
-      padding: 0 0.2rem;
-      font-size: 0.28rem;
-      display: flex;
-      align-items: center;
-      .amount-text-title {
-        width: 0.6rem;
-      }
-      .amount-text-number {
-        flex: 1;
-        text-align: right;
-        .sign {
-          padding-right: 0.1rem;
-        }
-      }
-    }
-  }
-  .convert-ratio {
-    .public-title {
-      text-align: center;
-    }
-    .ratio-ul {
-      display: flex;
-      align-items: center;
-      .ratio-list {
-        height: 0.6rem;
-        line-height: 0.6rem;
-        position: relative;
-        width: 50%;
-        // display: flex;
-        align-items: center;
-        .ratio-list-title {
-          font-size: 0.28rem;
-        }
-        .ratio-list-title {
-          &.client-text {
-            padding-right: 0.2rem;
-          }
-        }
-        .ratio-list-text {
-          font-size: 0.32rem;
-          span {
-            font-size: 0.24rem;
-          }
-          &.up {
-            color: #ff6645;
-          }
-          &.down {
-            color: #2d8e80;
-          }
-        }
-        .ratio-list-icon {
-          width: 0.17rem;
-          height: 0.13rem;
-          position: absolute;
-          right: 0;
-          top: 0.24rem;
-        }
-        .ratio-list-item {
-          font-size: 0.28rem;
-        }
-        .ratio-list-item:nth-child(2) {
-          padding: 0 0.15rem;
-        }
-      }
-      .compare-list {
-        box-sizing: border-box;
-        padding-right: 0.2rem;
-        display: flex;
-        align-items: center;
-        width: 50%;
-        .ratio-list-title {
-          flex: 1;
-        }
-        .compare-text {
-          text-align: right;
-          flex: 1;
-        }
-      }
-    }
-    .circle {
-      width: 0.6rem;
-      height: 0.6rem;
-      position: relative;
-      border-radius: 50%;
-      margin: 0 auto;
-      background: linear-gradient(to bottom, #60b1fb, #c096ff);
-    }
-    &.pay-ratio {
-      .circle {
-        background: linear-gradient(to bottom, #ce6ee5, #faa689);
-      }
-    }
-    &.store-ratio {
-      .circle {
-        background: linear-gradient(to bottom, #ff7451, #ffb139);
-      }
-    }
-    .circle-left,
-    .circle-right {
-      width: 0.6rem;
-      height: 0.6rem;
-      border-radius: 50%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #f6f6f6;
-    }
-    .clip-left,
-    .clip-right {
-      width: 0.6rem;
-      height: 0.6rem;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .circle-left,
-    .clip-left {
-      position: absolute;
-      clip: rect(0, 0.3rem, auto, 0);
-    }
-    .circle-right,
-    .clip-right {
-      position: absolute;
-      clip: rect(0, auto, auto, 0.3rem);
-    }
-    .mask {
-      width: 0.36rem;
-      height: 0.36rem;
-      border-radius: 50%;
-      left: 0.12rem;
-      top: 0.12rem;
-      background: #fff;
-      position: absolute;
-    }
-  }
-  .tips-content {
-    padding: 0.4rem 0.4rem 0.6rem 0.1rem;
-    border: none;
-    .tips-content-text {
-      background: #fbf7f0;
-      padding: 0.2rem;
-      .text-box {
-        border: 0.01rem solid #e4d9cc;
-        padding: 0.4rem 0.1rem 0.4rem 0.2rem;
-        box-sizing: border-box;
-        width: 100%;
-        height: 3.2rem;
-        position: relative;
-        .text-box-title {
-          font-size: 0.28rem;
-          color: #937555;
-          text-align: center;
-          position: relative;
-          &:before,
-          &:after {
-            content: "";
-            position: absolute;
-            top: 40%;
-            background: #cdbca9;
-            width: 12%;
-            height: 0.04rem;
-          }
-          &:before {
-            left: 25%;
-          }
-          &:after {
-            right: 25%;
-          }
-        }
-        .text-box-text {
-          font-size: 0.3rem;
-          padding-top: 0.4rem;
-          word-break: normal;
-          word-wrap: break-word;
-          font-family: "微软雅黑";
-        }
-        .text-box-logo {
-          padding: 0 0.2rem;
-          width: 0.96rem;
-          background: #fbf7f0;
-          position: absolute;
-          bottom: -0.15rem;
-          left: 50%;
-          margin-left: -0.48rem;
-          img {
-            width: 0.96rem;
-            height: 0.15rem;
-          }
-        }
-      }
-    }
-  }
 }
 
 .doughnut-list {
@@ -674,6 +416,15 @@ export default {
         background: #fff;
         position: absolute;
       }
+      .rate{
+        width: 2.3rem;
+        line-height: 2.3rem;
+        position: absolute;
+        text-align: center;
+        font-size: 0.4rem;
+        font-weight:bold;
+        color:rgba(102,102,102,1);
+      }
     }
     .item-text {
       overflow: hidden;
@@ -726,12 +477,18 @@ export default {
           }
           &.runner {
             width: 0.2rem;
-            height: 2rem;
             border-radius: 10px;
             background: linear-gradient(
               0deg,
               rgba(20, 97, 192, 1) 0%,
               rgba(52, 216, 192, 1) 100%
+            );
+          }
+          &.more {
+            background: linear-gradient(
+              180deg,
+              rgba(242, 225, 31, 1) 0%,
+              rgba(205, 51, 34, 1) 100%
             );
           }
         }
@@ -740,21 +497,6 @@ export default {
     .bar-title {
       font-size: 0.2rem;
       color: rgba(102, 102, 102, 1);
-    }
-    &:first-child {
-      .loader-container {
-        .loader-content {
-          span {
-            &.runner {
-              background: linear-gradient(
-                180deg,
-                rgba(242, 225, 31, 1) 0%,
-                rgba(205, 51, 34, 1) 100%
-              );
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -775,12 +517,21 @@ export default {
       text-align: center;
       &:first-child {
         width: 30%;
+        white-space: normal;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        word-wrap: break-word;
+        word-break: break-all;
+        text-align: left;
+        overflow: hidden;
       }
       &:nth-child(2) {
-        width: 45%;
+        width: 40%;
       }
       &:last-child {
-        width: 25%;
+        width: 30%;
       }
     }
   }
@@ -806,4 +557,65 @@ export default {
   font-weight: bold;
   border: none;
 }
+
+.more-data-section{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  .opcity{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(1,1,1,0.3)
+  }
+  .statement-section{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    margin-bottom: 0 !important;
+    width: 100%;
+    height: 80%;
+    .public-title{
+      text-align: center;
+      font-size: 0.32rem;
+      color:rgba(51,51,51,1);
+    }
+    .dynamic-list-item.title {
+      border-bottom: 2px solid rgba(52,216,192,1);
+    }
+    .dynamic-list{
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .dynamic-list-ul{
+      width: 100%;
+      height: 85%;
+      position: absolute;
+      overflow-x: hidden;
+      overflow-y: auto;
+      li{
+        padding: 0.09rem 0.05rem;
+      }
+      &::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 0.1rem;
+        height: 2.73rem;
+      }
+      &::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px rgba(52,216,192,1);
+        background: rgba(52,216,192,1);
+      }
+      &::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(208,208,208,1);
+        border-radius: 0;
+        background: rgba(208,208,208,1);
+      }
+    }
+  }
+} 
 </style>

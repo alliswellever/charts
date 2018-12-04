@@ -96,7 +96,7 @@ let init = async () => {
         query4: await query4(),
         query5: await query5()
     }
-    console.log(3333, res);
+    // console.log(3333, res);
     return res;
 }
 

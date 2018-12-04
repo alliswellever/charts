@@ -4,7 +4,7 @@ import router from './router'
 import 'assets/styles/reset.css'
 import echarts from 'echarts'
 
-Vue.prototype.$echarts = echarts 
+// Vue.prototype.$echarts = echarts 
 Vue.config.productionTip = false
 
 export default new Vue({
