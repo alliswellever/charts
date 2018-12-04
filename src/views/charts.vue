@@ -39,10 +39,9 @@
     </section>
     <section class="statement-section">
       <p class="public-title">七日数据增量</p>
-      <div id="lineChart" :style="{width: '100%', height: '300px'}"></div>
-      <!-- <div :style="{width: '100%', height: '300px'}">
+      <div :style="{width: '100%', height: '300px'}">
         <IEcharts :option="bar" class="step_echarts"></IEcharts>
-      </div> -->
+      </div>
     </section>
     <section class="statement-section">
       <ul class="doughnut-list">
@@ -133,8 +132,8 @@
       <button class="load-more" @click="sheetSwitch">点击查看更多动态</button>
     </section>
     <section class="more-data-section" v-show="sheetVisible">
-      <div class="opcity"></div>
-      <section class="statement-section">
+      <div class="opcity" @click="closeSheetSwitch" ></div>
+      <section class="statement-section" id="moreData">
         <p class="public-title">接口动态</p>
         <div class="dynamic-list">
           <div class="dynamic-list-item title">
@@ -160,6 +159,7 @@ import init from "api";
 import echarts from 'echarts'
 import IEcharts from 'vue-echarts-v3'
 import 'echarts/lib/chart/line'
+const $ = require('jquery');
 
 export default {
   data() {
@@ -167,7 +167,6 @@ export default {
       headerData: {},
       headerDataNum: [],
       top10Data: [],
-      incrementData: [],
       systemPercentData: {},
       systemPercentNum: '',
       companyPercentData: {},
@@ -175,7 +174,9 @@ export default {
       apiData: [],
       moreApiData: [],
       sheetVisible: false,
-      bar: {}
+      bar: {},
+      xAxisData: [],
+      seriesData: [],
     };
   },
   components: {
@@ -188,6 +189,12 @@ export default {
   methods: {
     sheetSwitch() {
       this.sheetVisible = true
+      $("#moreData").animate({height:"80%"},"normal","linear");
+    },
+
+    closeSheetSwitch() {
+      $("#moreData").animate({height:"0"},"normal","linear");
+      this.sheetVisible = false
     },
 
     getDatas() {
@@ -200,7 +207,12 @@ export default {
           item.height = (item.sum / 500 ) * 3.3 + 'rem';
         })
         this.top10Data = result.query1
-        this.incrementData = result.query2
+        result.query2.map((item, index) => {
+          let days = item.before_7day.split('-')
+          let dayText = days[1] + '.' + days[2]
+          this.xAxisData.push(dayText)
+          this.seriesData.push((parseInt(item.sum) / 10000).toFixed(1))
+        })
         this.systemPercentData = result.query3
         this.systemPercentNum = this.systemPercentData.rate.split('.')[0]
         this.companyPercentData = result.query4
@@ -214,72 +226,58 @@ export default {
     },
 
     drawLineChart() {
+      let _this = this;
       this.bar = {
         tooltip: {},
           xAxis: {
-              data: ['1泡', '2泡', '3泡', '4泡', '5泡'],
+              data: _this.xAxisData,
               axisTick:{
                   alignWithLabel:true
               }
           },
           yAxis: {
-              show:false
+              type: 'value',
+              axisLabel: {
+                  formatter: '{value} w'
+              }
           },
           series: [{
                 name: 'Clouds',
                 type: 'line',
-                data: [5, 7, 13, 20, 30],
+                data: _this.seriesData,
+                label: {
+                  normal: {
+                    show: true,
+                    position: 'top',
+                  }
+                },
                 itemStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(
-                        0, 0, 0, 1,
-                        [
-                            {offset: 0, color: 'red'},
-                            {offset: 0.5, color: 'pink'},
-                            {offset: 1, color: '#ddd'}
-                        ]
-                    )
+                  normal: {
+                      color: new echarts.graphic.LinearGradient(
+                          0, 0, 0, 1,
+                          [
+                              {offset: 0, color: '#1461C0'},
+                              {offset: 1, color: '#34D8C0'}
+                          ]
+                      )
+                  }
+                },
+                areaStyle: {
+                  normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                      {
+                        offset: 0,
+                        color: "rgba(20,65,192,0.66)"
+                      },
+                      {
+                        offset: 1,
+                        color: "rgba(52,216,192,0.66)"
+                      }
+                    ])
+                  }
                 }
-            }
           }]
       }
-      // 基于准备好的dom，初始化echarts实例
-      let lineChart = echarts.init(document.getElementById("lineChart"));
-      // 绘制图表
-      lineChart.setOption({
-        xAxis: {
-          type: "category",
-          boundaryGap: false,
-          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-        },
-        yAxis: {
-          type: "value"
-        },
-        series: [
-          {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: "line",
-            areaStyle: {
-              normal: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  {
-                    offset: 0,
-                    color: "rgba(80,141,255,0.39)"
-                  },
-                  {
-                    offset: 0.34,
-                    color: "rgba(56,155,255,0.25)"
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(38,197,254,0.00)"
-                  }
-                ])
-              }
-            }
-          }
-        ]
-      });
     }
   }
 };
@@ -578,7 +576,7 @@ export default {
     z-index: 2;
     margin-bottom: 0 !important;
     width: 100%;
-    height: 80%;
+    height: 0;
     .public-title{
       text-align: center;
       font-size: 0.32rem;
