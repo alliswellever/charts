@@ -240,6 +240,9 @@ init()
   .catch(e => {
     console.log(1111222, e);
   });
+// import IEcharts from 'vue-echarts-v3'
+// import 'echarts/lib/chart/line'
+
 export default {
   data() {
     return {
@@ -252,20 +255,39 @@ export default {
   methods: {
     drawLineChart() {
       // 基于准备好的dom，初始化echarts实例
-      let barChart = this.$echarts.init(document.getElementById("lineChart"));
+      let lineChart = this.$echarts.init(document.getElementById("lineChart"));
       // 绘制图表
-      barChart.setOption({
-        title: { text: "" },
-        tooltip: {},
+      lineChart.setOption({
         xAxis: {
-          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+          type: "category",
+          boundaryGap: false,
+          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
         },
-        yAxis: {},
+        yAxis: {
+          type: "value"
+        },
         series: [
           {
-            name: "销量",
-            type: "bar",
-            data: [5, 20, 36, 10, 10, 20]
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: "line",
+            areaStyle: {
+              normal: {
+                color: this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: "rgba(80,141,255,0.39)"
+                  },
+                  {
+                    offset: 0.34,
+                    color: "rgba(56,155,255,0.25)"
+                  },
+                  {
+                    offset: 1,
+                    color: "rgba(38,197,254,0.00)"
+                  }
+                ])
+              }
+            }
           }
         ]
       });
