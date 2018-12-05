@@ -1,6 +1,6 @@
 /* eslint-disable */
 const chartsRouter = [{
-    path: '/charts',
+    path: '/index',
     name: '报表',
     component: () =>
       import ('views/charts')
