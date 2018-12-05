@@ -1,7 +1,7 @@
 const $ = require('jquery');
-const URL = "http://www.baidu.com/ggg";
+const URL = "http://223.72.207.235:8090/XXX";
 const data = require('./data');
-const TEST = true;
+const TEST = false;
 
 const Ajax = async (params) => {
     const { url, method = "GET", data = {} } = params;
@@ -28,7 +28,7 @@ const query = async () => {
     let result = await Ajax({
         url: "/query"
     });
-    return result[0];
+    return result;
 }
 
 const query1 = async () => {
@@ -39,7 +39,7 @@ const query1 = async () => {
     let result = await Ajax({
         url: "/query1"
     });
-    return result[0];
+    return result;
 }
 
 const query2 = async () => {
@@ -96,7 +96,6 @@ let init = async () => {
         query4: await query4(),
         query5: await query5()
     }
-    // console.log(3333, res);
     return res;
 }
 

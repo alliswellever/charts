@@ -11,15 +11,15 @@
       <ul class="conversion-content">
         <li class="item">
           <h5>已对接单位(家)</h5>
-          <p>{{headerData.unit}}</p>
+          <p>{{headerData.unit_ok}}</p>
         </li>
         <li class="item">
           <h5>已对接系统(个)</h5>
-          <p>{{headerData.system}}</p>
+          <p>{{headerData.system_ok}}</p>
         </li>
         <li class="item">
           <h5>数据条数(条)</h5>
-          <p>{{headerData.data}}</p>
+          <p>{{headerData.yesterday_data}}</p>
         </li>
       </ul>
     </section>
@@ -200,8 +200,9 @@ export default {
     getDatas() {
       init()
       .then(result => {
+        console.log(result)
         this.headerData = result.query
-        this.headerDataNum = this.headerData.number.split('.')
+        this.headerDataNum = this.headerData.date_number.split('.')
         result.query1.map((item, index) => {
           item.sum = (parseInt(item.sum) / 10000).toFixed(0);
           item.height = (item.sum / 500 ) * 3.3 + 'rem';
