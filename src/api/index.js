@@ -88,13 +88,16 @@ const query5 = async () => {
 }
 
 let init = async () => {
+    let ps = await Promise.all([query(), query1(), query2(), query3(), query4(), query5()]);
+    // console.log(ps);
+
     let res = {
-        query: await query(),
-        query1: await query1(),
-        query2: await query2(),
-        query3: await query3(),
-        query4: await query4(),
-        query5: await query5()
+        query: ps[0],
+        query1: ps[1],
+        query2: ps[2],
+        query3: ps[3],
+        query4: ps[4],
+        query5: ps[5]
     }
     return res;
 }
