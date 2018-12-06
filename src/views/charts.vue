@@ -28,9 +28,10 @@
       <ul class="bar-list">
         <li class="bar-list-item" v-for="(item, index) in top10Data" :key="index">
           <div class="loader-container">
+            <div class="bg-content"></div>
             <div class="loader-content">
               <span class="text">{{item.sum}}w</span>
-              <span class="runner" :style="{'height': item.height}"></span>
+              <span class="runner" :class="item.sum > 100 ? 'more' : ''" :style="{'height': item.height}"></span>
             </div>
           </div>
           <p class="bar-title">{{item.sys_name}}</p>
@@ -39,7 +40,7 @@
     </section>
     <section class="statement-section">
       <p class="public-title">七日数据增量</p>
-      <div :style="{width: '100%', height: '300px'}">
+      <div class="bar-content">
         <IEcharts :option="bar" class="step_echarts"></IEcharts>
       </div>
     </section>
@@ -197,20 +198,28 @@ export default {
       this.sheetVisible = false
     },
 
+    ArrayMax(array){
+      return Math.max.apply( Math, array ); 
+    },
+
     getDatas() {
       init()
       .then(result => {
-        console.log(result)
         this.headerData = result.query
         this.headerDataNum = this.headerData.date_number.split('.')
+        let sumArray = []
         result.query1.map((item, index) => {
           item.sum = (parseInt(item.sum) / 10000).toFixed(0);
-          item.height = (item.sum / 500 ) * 3.3 + 'rem';
+          sumArray.push(item.sum)
+        })
+        let maxNum = this.ArrayMax(sumArray);
+        result.query1.map((item, index) => {
+          item.height = (item.sum / maxNum ) * 3.3 + 'rem';
         })
         this.top10Data = result.query1
         result.query2.map((item, index) => {
           let days = item.before_7day.split('-')
-          let dayText = days[1] + '.' + days[2]
+          let dayText = days[1] + '-' + days[2]
           this.xAxisData.push(dayText)
           this.seriesData.push((parseInt(item.sum) / 10000).toFixed(1))
         })
@@ -239,7 +248,7 @@ export default {
           yAxis: {
               type: 'value',
               axisLabel: {
-                  formatter: '{value} w'
+                  formatter: '{value} 万'
               }
           },
           series: [{
@@ -355,6 +364,10 @@ export default {
       }
     }
   }
+  .bar-content{
+    width: 100%;
+    height: 300px;
+  }
 }
 
 .doughnut-list {
@@ -457,9 +470,16 @@ export default {
     }
     .loader-container {
       position: relative;
-      height: 3.3rem;
-      border-radius: 10px;
-      background: rgba(159, 159, 159, 0.16);
+      height: 3.8rem;
+      .bg-content{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0.2rem;
+        height: 3.3rem;
+        border-radius: 10px;
+        background: rgba(159, 159, 159, 0.16);
+      }
       .loader-content {
         position: absolute;
         left: 0;
