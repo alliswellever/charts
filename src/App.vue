@@ -27,18 +27,20 @@
       <p class="public-title">系统数据量TOP10</p>
       <ul class="bar-list">
         <li class="bar-list-item" v-for="(item, index) in top10Data" :key="index">
-          <div class="loader-container">
-            <div class="bg-content"></div>
-            <div class="loader-content">
-              <span class="text">{{item.sum}}w</span>
-              <span
-                class="runner"
-                :class="item.sum > 100 ? 'more' : ''"
-                :style="{'height': item.height}"
-              ></span>
+          <div class="bar-list-div">
+            <div class="loader-container">
+              <div class="bg-content"></div>
+              <div class="loader-content">
+                <span class="text">{{item.sum}}w</span>
+                <span
+                  class="runner"
+                  :class="item.sum > 100 ? 'more' : ''"
+                  :style="{'height': item.height}"
+                ></span>
+              </div>
             </div>
+            <p class="bar-title">{{item.sys_name}}</p>
           </div>
-          <p class="bar-title">{{item.sys_name}}</p>
         </li>
       </ul>
     </section>
@@ -341,7 +343,7 @@ export default {
     }
     .conversion-content {
       display: flex;
-      width: 6.7rem;
+      width: 90%;
       height: 1.3rem;
       border-radius: 10px 10px 0px 0px;
       background: rgba(51, 51, 51, 0.2);
@@ -463,11 +465,13 @@ export default {
 }
 
 .bar-list {
-  overflow: hidden;
+  display: flex;
   .bar-list-item {
-    float: left;
-    width: 0.2rem;
-    margin: 0 0.235rem;
+    flex: 1;
+    .bar-list-div {
+      width: 0.2rem;
+      margin: 0 0.2rem;
+    }
     &:last-child {
       margin-right: 0;
     }
