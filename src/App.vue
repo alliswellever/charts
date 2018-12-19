@@ -19,7 +19,7 @@
         </li>
         <li class="item">
           <h5>数据条数(条)</h5>
-          <p>{{headerData.yesterday_data}}</p>
+          <p>{{headerData.date_number}}</p>
         </li>
       </ul>
     </section>
@@ -212,7 +212,7 @@ export default {
       init()
         .then(result => {
           this.headerData = result.query;
-          this.headerDataNum = this.headerData.date_number.split(".");
+          this.headerDataNum = this.headerData.yesterday_data.split(".");
           let sumArray = [];
           result.query1.map((item, index) => {
             item.sum = (parseInt(item.sum) / 10000).toFixed(0);
@@ -350,7 +350,7 @@ export default {
       position: absolute;
       bottom: 0;
       .item {
-        flex: 1;
+        width: 30%;
         text-align: center;
         h5 {
           height: 0.2rem;
@@ -365,6 +365,9 @@ export default {
           font-weight: 400;
           color: rgba(255, 255, 255, 1);
           padding-top: 0.35rem;
+        }
+        &:last-child{
+          width: 40%;
         }
       }
     }
@@ -470,7 +473,7 @@ export default {
     flex: 1;
     .bar-list-div {
       width: 0.2rem;
-      margin: 0 0.2rem;
+      margin: 0 auto;
     }
     &:last-child {
       margin-right: 0;
